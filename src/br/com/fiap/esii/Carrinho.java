@@ -14,6 +14,7 @@ import java.util.List;
  */
 class Carrinho {
 
+    
     int getQuantidadeItens() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
