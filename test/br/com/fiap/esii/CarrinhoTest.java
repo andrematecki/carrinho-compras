@@ -117,7 +117,7 @@ public class CarrinhoTest {
     */
     @Test(expected = ProdutoInexistenteExpected.class)
     public void removendoProdutoInexistente(){
-        Perfumaria perfume = new Perfumaria("Desodorante masculino", 14.90);
+        Perfume perfume = new Perfume("Desodorante masculino", 14.90);
         carrinho.remove(perfume);
     }
     
@@ -129,7 +129,7 @@ public class CarrinhoTest {
     public void obtendoListaDeProdutosDoCarrinho(){
         Livro biblia = new Livro("A biblia de c#", 250.00);
         Eletronico celular = new Eletronico("Home Theater Sony", 2500.00);
-        Perfumaria perfume = new Perfumaria("perfume feminino", 150.00);
+        Perfume perfume = new Perfume("perfume feminino", 150.00);
         
         List<Produto> produtosAdicionar = new ArrayList<>(
                 Arrays.asList(biblia, celular, perfume));
@@ -147,8 +147,43 @@ public class CarrinhoTest {
         CT10 -  O total a ser pago deve ser a quantidade de cada 
                 produto x o valor do mesmo
     */
+    @Test
+    public void calculandoValorAPagar(){
+        Livro apostila = new Livro("Apostila de C", 30.00);
+        Perfume perfume = new Perfume("Perfume feminino", 350.00);
+        
+        carrinho.add(perfume);
+        carrinho.add(perfume);
+        carrinho.add(apostila);
+        carrinho.add(apostila);
+        
+        double totalPagar = 2 * apostila.getPreco() + 2 * perfume.getPreco();
+        
+        assertEquals(totalPagar, carrinho.getTotal());
+    }
+            
     
     /*
         CT11 -  Deve ser possivel adicionar produtos de diferentes tipos
     */
+    @Test
+    public void contabilizandoProdutosDoMesmoTipo() throws ProdutoInexistenteExpected{
+        Perfume doce = new Perfume("Perfume doce", 50.00);
+        Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
+        Eletronico tv = new Eletronico("TV 20' LG", 1500.00);
+        Livro cabana = new Livro("A cabana", 49.90);
+        
+        carrinho.add(doce);
+        carrinho.add(doce);
+        carrinho.add(amadeirado);
+        
+        carrinho.add(tv);
+        carrinho.add(cabana);
+        
+        int qtdeDePerfumes = carrinho.getQuantidadeProdutos(Perfume.class);
+        
+        assertEquals(qtdeDePerfumes, 3);
+        
+        
+    }
 }

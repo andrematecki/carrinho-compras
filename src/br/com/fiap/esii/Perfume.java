@@ -10,9 +10,9 @@ package br.com.fiap.esii;
  *
  * @author EOS
  */
-public class Perfumaria extends Produto{
+public class Perfume extends Produto{
 
-    Perfumaria(String perfume_feminino, double d) {
+    Perfume(String perfume_feminino, double d) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
