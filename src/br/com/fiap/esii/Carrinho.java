@@ -32,7 +32,7 @@ public class Carrinho {
         return itens.size();
     }
 
-    void add(Produto produto) {
+   public void add(Produto produto) {
         
         Item i = new Item(produto,1);
         
@@ -48,12 +48,12 @@ public class Carrinho {
        
     }
 
-    public ArrayList<Item> getItens() {
+   public ArrayList<Item> getItens() {
       
         return itens;
     }
 
-    void remove(Produto produto)throws ProdutoInexistenteExpected {
+    public void remove(Produto produto)throws ProdutoInexistenteExpected {
         
         Item i = new Item(produto);
         
@@ -78,8 +78,21 @@ public class Carrinho {
         
     }
     
-    int getQuantidadeProdutos(Class clazz) throws ProdutoInexistenteExpected{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getQuantidadeProdutos(Class Clazz) throws ProdutoInexistenteExpected{
+        
+        int qtde=0;
+        
+         for(int k=0;k<itens.size();k++)
+             if(itens.get(k).getProduto().getClass() == Clazz)
+             {
+                 qtde+=itens.get(k).getQtd();
+             }
+             
+             if(qtde==0)
+                throw new ProdutoInexistenteExpected();
+                 
+             return qtde;
+       
     }
 
     public boolean isEmpty() {
@@ -87,8 +100,18 @@ public class Carrinho {
         return itens.isEmpty();
     }
 
-    Object getTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Double getTotal() {
+        
+        total=0.0;
+        
+        for(int k=0;k<itens.size();k++)
+        {
+            total+= itens.get(k).getQtd() * itens.get(k).getProduto().getPreco();
+        }
+        
+        return total;
+        
+        
     }
     
 }

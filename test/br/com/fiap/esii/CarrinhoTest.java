@@ -158,7 +158,7 @@ public class CarrinhoTest {
         carrinho.add(apostila);
         carrinho.add(apostila);
         
-        double totalPagar = 2 * apostila.getPreco() + 2 * perfume.getPreco();
+        Double totalPagar = 2 * apostila.getPreco() + 2 * perfume.getPreco();
         
         assertEquals(totalPagar, carrinho.getTotal());
     }
