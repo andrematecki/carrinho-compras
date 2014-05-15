@@ -32,7 +32,7 @@ public class CarrinhoTest {
                 carrinho deve ser criado um item
     */
     @Test
-    public void adicionandoPrimeiroProduto() throws ProdutoInexistenteExpected{
+    public void adicionandoPrimeiroProduto() throws ProdutoInexistenteException{
         int qtdeItensAntiga = carrinho.getQuantidadeItens();
         Livro l1 = new Livro("Aprendendo Java", 50.00);
         carrinho.add(l1);
@@ -45,12 +45,11 @@ public class CarrinhoTest {
                 itens não deve ser modificada.
     */
     @Test
-    public void adicionandoProdutosAoMesmoItem(){
+    public void adicionandoProdutosAoMesmoItem() throws QuantidadeInsuficienteException{
         Eletronico celular = new Eletronico("Iphone 5", 1.500);
         carrinho.add(celular);
         int qtdeAntiga = carrinho.getQuantidadeItens();
-        carrinho.add(celular);
-        carrinho.add(celular);
+        carrinho.add(celular, 2);
         int qtdeNova = carrinho.getQuantidadeItens();
         assertEquals(qtdeAntiga, qtdeNova);
     }
@@ -60,7 +59,7 @@ public class CarrinhoTest {
                 do produto deve ser a antiga + 1
     */
     @Test
-    public void adicionandoMaisProdutosExistentes() throws ProdutoInexistenteExpected{
+    public void adicionandoMaisProdutosExistentes() throws ProdutoInexistenteException{
         Eletronico tv = new Eletronico("TV LED 50' Samsumg", 5.500);
         carrinho.add(tv);
         int qtdeAntiga = carrinho.getQuantidadeProdutos(tv);
@@ -73,8 +72,8 @@ public class CarrinhoTest {
         CT05 -  Não deve ser possível obter a quantidade de um produto
                 inexistente no carrinho
     */
-    @Test(expected = ProdutoInexistenteExpected.class)
-    public void obtendoQuantidadeProdutoInexistente() throws ProdutoInexistenteExpected{
+    @Test(expected = ProdutoInexistenteException.class)
+    public void obtendoQuantidadeProdutoInexistente() throws ProdutoInexistenteException{
         Eletronico dvd = new Eletronico("Aparelho de DVD LG", 150.00);
         int qtdeProdutos = carrinho.getQuantidadeProdutos(dvd);
         assertEquals(qtdeProdutos, 0);
@@ -85,7 +84,7 @@ public class CarrinhoTest {
                 antiga menos 1
     */
     @Test
-    public void removendoUmProdutoExistente() throws ProdutoInexistenteExpected{
+    public void removendoUmProdutoExistente() throws ProdutoInexistenteException{
         Livro deitel = new Livro("Aprendendo a programar JAVA", 150.00);
         carrinho.add(deitel);
         carrinho.add(deitel);
@@ -103,7 +102,7 @@ public class CarrinhoTest {
                 o item deve ser removido.
     */
     @Test
-    public void removendoUmProdutoComUmaQuantidade()throws ProdutoInexistenteExpected{
+    public void removendoUmProdutoComUmaQuantidade()throws ProdutoInexistenteException{
         int qtdeItensAntiga = carrinho.getQuantidadeItens();
         Livro cacador = new Livro("O caçador de pipas", 50.00);
         carrinho.add(cacador);
@@ -116,8 +115,8 @@ public class CarrinhoTest {
     /*
         CT08 -  Não é possivel remover um produto que não existe no carrinho
     */
-    @Test(expected = ProdutoInexistenteExpected.class)
-    public void removendoProdutoInexistente()throws ProdutoInexistenteExpected{
+    @Test(expected = ProdutoInexistenteException.class)
+    public void removendoProdutoInexistente()throws ProdutoInexistenteException{
         Perfume perfume = new Perfume("Desodorante masculino", 14.90);
         carrinho.remove(perfume);
     }
@@ -168,7 +167,7 @@ public class CarrinhoTest {
         CT11 -  Deve ser possivel adicionar produtos de diferentes tipos
     */
     @Test//(expected = ProdutoInexistenteExpected.class)
-    public void contabilizandoProdutosDoMesmoTipo() throws ProdutoInexistenteExpected{
+    public void contabilizandoProdutosDoMesmoTipo() throws ProdutoInexistenteException{
         Perfume doce = new Perfume("Perfume doce", 50.00);
         Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
         Eletronico tv = new Eletronico("TV 20' LG", 1500.00);
