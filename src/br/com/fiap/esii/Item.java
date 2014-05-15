@@ -1,22 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.com.fiap.esii;
+
+import java.util.Objects;
 
 public class Item {
     
-    private Produto produto;
+    private final Produto produto;
     private int qtd;
 
-    public Item(Produto produto, int qtd) {
+    public Item(final Produto produto, int qtd) {
         this.produto = produto;
         this.qtd = qtd;
     }
     
-     public Item(Produto produto) {
+    public Item(Produto produto) {
         this.produto = produto;
         this.qtd = 0;
     }
@@ -24,7 +20,7 @@ public class Item {
     public Produto getProduto() {
         return produto;
     }
-
+    
     public int getQtd() {
         return qtd;
     }
@@ -37,20 +33,14 @@ public class Item {
         this.qtd--;
     }
     
-    
-
     @Override
     public boolean equals(Object obj) {
-        Item aux = (Item)obj;
-        
-       if(produto.getNome().equals(aux.getProduto().getNome())) 
-           return true;
-       else
-           return false;
-       
+        if(obj instanceof Item) {
+            Item aux = (Item)obj;
+            return produto.getNome().equals(aux.getProduto().getNome());  
+        } 
+        else {
+            return false;
+        }
     }
-    
-    
-    
-    
 }

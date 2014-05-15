@@ -84,11 +84,10 @@ public class CarrinhoTest {
                 antiga menos 1
     */
     @Test
-    public void removendoUmProdutoExistente() throws ProdutoInexistenteException{
+    public void removendoUmProdutoExistente() 
+            throws ProdutoInexistenteException, QuantidadeInsuficienteException{
         Livro deitel = new Livro("Aprendendo a programar JAVA", 150.00);
-        carrinho.add(deitel);
-        carrinho.add(deitel);
-        carrinho.add(deitel);
+        carrinho.add(deitel, 3);
         int qtdeAntiga = carrinho.getQuantidadeProdutos(deitel);
         carrinho.remove(deitel);
         int qtdeNova = carrinho.getQuantidadeProdutos(deitel);
@@ -127,8 +126,8 @@ public class CarrinhoTest {
     */
     @Test
     public void obtendoListaDeProdutosDoCarrinho(){
-        Livro biblia = new Livro("A biblia de c#", 250.00);
         Eletronico celular = new Eletronico("Home Theater Sony", 2500.00);
+        Livro biblia = new Livro("A biblia de c#", 250.00);
         Perfume perfume = new Perfume("perfume feminino", 150.00);
         
         ArrayList<Item> produtosAdicionar = new ArrayList<>(
@@ -166,42 +165,36 @@ public class CarrinhoTest {
     /*
         CT11 -  Deve ser possivel adicionar produtos de diferentes tipos
     */
-    @Test//(expected = ProdutoInexistenteExpected.class)
-    public void contabilizandoProdutosDoMesmoTipo() throws ProdutoInexistenteException{
+    @Test
+    public void contabilizandoProdutosDoMesmoTipo() 
+            throws ProdutoInexistenteException, QuantidadeInsuficienteException{
         Perfume doce = new Perfume("Perfume doce", 50.00);
         Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
         Eletronico tv = new Eletronico("TV 20' LG", 1500.00);
         Livro cabana = new Livro("A cabana", 49.90);
         
-        carrinho.add(doce);
-        carrinho.add(doce);
+        carrinho.add(doce, 2);
         carrinho.add(amadeirado);
-        
         carrinho.add(tv);
         carrinho.add(cabana);
         
         int qtdeDePerfumes = carrinho.getQuantidadeProdutos(Perfume.class);
         
         assertEquals(qtdeDePerfumes, 3);
-        
-        
     }
     
     /*
         CT12 -  Ao esvaziar o carrinho a quantidade de itens deve ser 0
     */
     @Test
-    public void esvaziarCarrinho()
-    {
+    public void esvaziarCarrinho() throws QuantidadeInsuficienteException {
         Perfume doce = new Perfume("Perfume doce", 50.00);
         Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
         Eletronico tv = new Eletronico("TV 20' LG", 1500.00);
         Livro cabana = new Livro("A cabana", 49.90);
         
-        carrinho.add(doce);
-        carrinho.add(doce);
+        carrinho.add(doce, 2);
         carrinho.add(amadeirado);
-        
         carrinho.add(tv);
         carrinho.add(cabana);
     
