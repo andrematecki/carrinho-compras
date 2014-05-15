@@ -16,18 +16,13 @@ import java.util.List;
 public class Carrinho {
     
     private ArrayList<Item> itens;
-    private Double total;
 
     public Carrinho() {
         
         this.itens = new ArrayList<Item>();
-        this.total=0.0;
         
     }
-    
-    
 
-    
     public int getQuantidadeItens() {
         return itens.size();
     }
@@ -102,7 +97,7 @@ public class Carrinho {
 
     public Double getTotal() {
         
-        total=0.0;
+        Double total=0.0;
         
         for(int k=0;k<itens.size();k++)
         {
@@ -112,6 +107,11 @@ public class Carrinho {
         return total;
         
         
+    }
+    
+    public void clear()
+    {
+        itens.clear();
     }
     
 }

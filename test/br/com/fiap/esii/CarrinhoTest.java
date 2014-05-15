@@ -167,7 +167,7 @@ public class CarrinhoTest {
     /*
         CT11 -  Deve ser possivel adicionar produtos de diferentes tipos
     */
-    @Test
+    @Test//(expected = ProdutoInexistenteExpected.class)
     public void contabilizandoProdutosDoMesmoTipo() throws ProdutoInexistenteExpected{
         Perfume doce = new Perfume("Perfume doce", 50.00);
         Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
@@ -187,4 +187,31 @@ public class CarrinhoTest {
         
         
     }
+    
+    /*
+        CT12 -  Ao esvaziar o carrinho a quantidade de itens deve ser 0
+    */
+    @Test
+    public void esvaziarCarrinho()
+    {
+        Perfume doce = new Perfume("Perfume doce", 50.00);
+        Perfume amadeirado = new Perfume("PerfumeAmadeirado", 100.00);
+        Eletronico tv = new Eletronico("TV 20' LG", 1500.00);
+        Livro cabana = new Livro("A cabana", 49.90);
+        
+        carrinho.add(doce);
+        carrinho.add(doce);
+        carrinho.add(amadeirado);
+        
+        carrinho.add(tv);
+        carrinho.add(cabana);
+    
+        carrinho.clear();
+    
+        assertEquals(carrinho.getQuantidadeItens(), 0);
+    }
+    
+    
 }
+
+    
