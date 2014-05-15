@@ -34,9 +34,14 @@ public class Item {
         return qtd;
     }
 
-    public void setQtd() {
+    public void addQtd() {
         this.qtd++;
     }
+    
+    public void removeQtd() {
+        this.qtd--;
+    }
+    
     
 
     @Override

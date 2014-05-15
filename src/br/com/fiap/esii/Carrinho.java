@@ -38,7 +38,7 @@ public class Carrinho {
         
        if(itens.contains(i)){
            int index = itens.indexOf(i);
-           itens.get(index).setQtd();
+           itens.get(index).addQtd();
     
        }else{
            
@@ -48,13 +48,22 @@ public class Carrinho {
        
     }
 
-    List<Produto> getProdutos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Item> getItens() {
+      
+        return itens;
     }
 
-    void remove(Produto perfume) {
-       
+    void remove(Produto produto)throws ProdutoInexistenteExpected {
         
+        Item i = new Item(produto);
+        
+       if(itens.contains(i) &&  itens.get(itens.indexOf(i)).getQtd()==1)
+          itens.remove(i);
+       else
+           if(itens.contains(i))
+              itens.get(itens.indexOf(i)).removeQtd();
+           else
+               throw new ProdutoInexistenteExpected();
         
     }
 

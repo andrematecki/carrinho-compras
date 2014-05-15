@@ -103,7 +103,7 @@ public class CarrinhoTest {
                 o item deve ser removido.
     */
     @Test
-    public void removendoUmProdutoComUmaQuantidade(){
+    public void removendoUmProdutoComUmaQuantidade()throws ProdutoInexistenteExpected{
         int qtdeItensAntiga = carrinho.getQuantidadeItens();
         Livro cacador = new Livro("O caçador de pipas", 50.00);
         carrinho.add(cacador);
@@ -117,7 +117,7 @@ public class CarrinhoTest {
         CT08 -  Não é possivel remover um produto que não existe no carrinho
     */
     @Test(expected = ProdutoInexistenteExpected.class)
-    public void removendoProdutoInexistente(){
+    public void removendoProdutoInexistente()throws ProdutoInexistenteExpected{
         Perfume perfume = new Perfume("Desodorante masculino", 14.90);
         carrinho.remove(perfume);
     }
@@ -132,14 +132,14 @@ public class CarrinhoTest {
         Eletronico celular = new Eletronico("Home Theater Sony", 2500.00);
         Perfume perfume = new Perfume("perfume feminino", 150.00);
         
-        List<Produto> produtosAdicionar = new ArrayList<>(
-                Arrays.asList(biblia, celular, perfume));
+        ArrayList<Item> produtosAdicionar = new ArrayList<>(
+                Arrays.asList(new Item(celular), new Item(biblia),new Item(perfume)));
         
         carrinho.add(celular);
         carrinho.add(biblia);
         carrinho.add(perfume);
         
-        List<Produto> produtosAdicionados = carrinho.getProdutos();
+        ArrayList<Item> produtosAdicionados = carrinho.getItens();
         
         assertArrayEquals(produtosAdicionar.toArray(), produtosAdicionados.toArray());
     }
