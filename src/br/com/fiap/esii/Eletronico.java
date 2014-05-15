@@ -12,8 +12,9 @@ package br.com.fiap.esii;
  */
 public class Eletronico extends Produto {
 
-    Eletronico(String tv_led_50_Samsumg, double d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Eletronico(String nome, Double preco) {
+        super(nome, preco);
     }
+
     
 }

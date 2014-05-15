@@ -6,21 +6,46 @@
 
 package br.com.fiap.esii;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author EOS
  */
-class Carrinho {
+public class Carrinho {
+    
+    private ArrayList<Item> itens;
+    private Double total;
+
+    public Carrinho() {
+        
+        this.itens = new ArrayList<Item>();
+        this.total=0.0;
+        
+    }
+    
+    
 
     
-    int getQuantidadeItens() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getQuantidadeItens() {
+        return itens.size();
     }
 
-    void add(Produto celular) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void add(Produto produto) {
+        
+        Item i = new Item(produto,1);
+        
+       if(itens.contains(i)){
+           int index = itens.indexOf(i);
+           itens.get(index).setQtd();
+    
+       }else{
+           
+            itens.add(i);
+       }
+        
+       
     }
 
     List<Produto> getProdutos() {
@@ -28,19 +53,29 @@ class Carrinho {
     }
 
     void remove(Produto perfume) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        
+        
     }
 
-    int getQuantidadeProdutos(Produto deitel) throws ProdutoInexistenteExpected{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getQuantidadeProdutos(Produto produto) throws ProdutoInexistenteExpected{
+        
+         Item i = new Item(produto);
+        
+       if(itens.contains(i))
+           return itens.get(itens.indexOf(i)).getQtd();
+       else
+           throw new ProdutoInexistenteExpected();
+        
     }
     
     int getQuantidadeProdutos(Class clazz) throws ProdutoInexistenteExpected{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isEmpty() {
+        
+        return itens.isEmpty();
     }
 
     Object getTotal() {

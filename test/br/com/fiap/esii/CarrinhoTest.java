@@ -21,7 +21,7 @@ public class CarrinhoTest {
         CT01 -  Ao criar o carrinho, a quantidade de itens deve ser 0,
                 ou seja, deve estar vazio.
     */
-    @Test(expected = ProdutoInexistenteExpected.class)
+    @Test
     public void criandoCarrinhoVazio(){
         boolean isEmpty = carrinho.isEmpty();
         assertEquals(isEmpty, true);
@@ -34,8 +34,8 @@ public class CarrinhoTest {
     @Test
     public void adicionandoPrimeiroProduto() throws ProdutoInexistenteExpected{
         int qtdeItensAntiga = carrinho.getQuantidadeItens();
-        Livro java = new Livro("Aprendendo Java", 50.00);
-        carrinho.add(java);
+        Livro l1 = new Livro("Aprendendo Java", 50.00);
+        carrinho.add(l1);
         int qtdeItensNova = carrinho.getQuantidadeItens();
         assertEquals((qtdeItensAntiga + 1), qtdeItensNova);
     }
@@ -65,7 +65,8 @@ public class CarrinhoTest {
         carrinho.add(tv);
         int qtdeAntiga = carrinho.getQuantidadeProdutos(tv);
         carrinho.add(tv);
-        assertEquals(qtdeAntiga, (qtdeAntiga + 1));
+        int qtdeNova = carrinho.getQuantidadeProdutos(tv);
+        assertEquals(qtdeNova, (qtdeAntiga + 1));
     }
     
     /*
@@ -75,8 +76,8 @@ public class CarrinhoTest {
     @Test(expected = ProdutoInexistenteExpected.class)
     public void obtendoQuantidadeProdutoInexistente() throws ProdutoInexistenteExpected{
         Eletronico dvd = new Eletronico("Aparelho de DVD LG", 150.00);
-        Integer qtdeProdutos = carrinho.getQuantidadeProdutos(dvd);
-        assertEquals(qtdeProdutos, null);
+        int qtdeProdutos = carrinho.getQuantidadeProdutos(dvd);
+        assertEquals(qtdeProdutos, 0);
     }
     
     /*

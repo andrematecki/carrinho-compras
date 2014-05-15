@@ -12,7 +12,20 @@ package br.com.fiap.esii;
  */
 public class Produto {
     
-    double getPreco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String nome;
+    private Double preco;
+
+    public Produto(String nome, Double preco) {
+        this.nome = nome;
+        this.preco = preco;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
 }

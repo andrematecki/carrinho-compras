@@ -12,8 +12,10 @@ package br.com.fiap.esii;
  */
 public class Perfume extends Produto{
 
-    Perfume(String perfume_feminino, double d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Perfume(String nome, Double preco) {
+        super(nome, preco);
     }
+
+    
 
 }
