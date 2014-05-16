@@ -7,14 +7,9 @@ public class Item {
     private final Produto produto;
     private int qtd;
 
-    public Item(final Produto produto, int qtd) {
-        this.produto = produto;
-        this.qtd = qtd;
-    }
-    
     public Item(Produto produto) {
         this.produto = produto;
-        this.qtd = 0;
+        this.qtd = 1;
     }
     
     public Produto getProduto() {

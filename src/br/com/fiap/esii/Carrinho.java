@@ -16,10 +16,10 @@ public class Carrinho {
     }
 
     public void add(Produto produto) {
-        Item i = new Item(produto,1);
+        Item i = new Item(produto);
         
-        if(itens.contains(i)) {
-            int index = itens.indexOf(i);
+        int index = itens.indexOf(i);
+        if(index != -1) {
             itens.get(index).addQtd();
         }
         else {   
