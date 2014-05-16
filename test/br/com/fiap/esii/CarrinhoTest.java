@@ -137,7 +137,7 @@ public class CarrinhoTest {
         carrinho.add(biblia);
         carrinho.add(perfume);
         
-        ArrayList<Item> produtosAdicionados = carrinho.getItens();
+        List<Item> produtosAdicionados = carrinho.getItens();
         
         assertArrayEquals(produtosAdicionar.toArray(), produtosAdicionados.toArray());
     }
@@ -147,14 +147,12 @@ public class CarrinhoTest {
                 produto x o valor do mesmo
     */
     @Test
-    public void calculandoValorAPagar(){
+    public void calculandoValorAPagar() throws QuantidadeInsuficienteException{
         Livro apostila = new Livro("Apostila de C", 30.00);
         Perfume perfume = new Perfume("Perfume feminino", 350.00);
         
-        carrinho.add(perfume);
-        carrinho.add(perfume);
-        carrinho.add(apostila);
-        carrinho.add(apostila);
+        carrinho.add(perfume, 2);
+        carrinho.add(apostila, 2);
         
         Double totalPagar = 2 * apostila.getPreco() + 2 * perfume.getPreco();
         

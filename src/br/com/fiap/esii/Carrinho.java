@@ -1,10 +1,11 @@
 package br.com.fiap.esii;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Carrinho {
     
-    private final ArrayList<Item> itens;
+    private final List<Item> itens;
 
     public Carrinho() {
         this.itens = new ArrayList<>();  
@@ -35,7 +36,7 @@ public class Carrinho {
         }
     }
     
-    public ArrayList<Item> getItens() {
+    public List<Item> getItens() {
         return itens;
     }
 
