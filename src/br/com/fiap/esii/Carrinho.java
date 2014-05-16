@@ -42,28 +42,31 @@ public class Carrinho {
 
     public void remove(Produto produto) throws ProdutoInexistenteException {
         Item i = new Item(produto);
+        int index = itens.indexOf(i);
         
-        if(itens.contains(i) &&  itens.get(itens.indexOf(i)).getQtd()==1){
-            itens.remove(i);
+        if(index == -1){
+            throw new ProdutoInexistenteException();
         }
-        else {
-            if(itens.contains(i)){
-                itens.get(itens.indexOf(i)).removeQtd();
+        else{
+            Item item = itens.get(index);
+            if(item.getQtd() == 1){
+                itens.remove(i);
             }
             else{
-                throw new ProdutoInexistenteException();
+                item.removeQtd();
             }
         }
     }
 
     public int getQuantidadeProdutos(Produto produto) throws ProdutoInexistenteException{
         Item i = new Item(produto);
+        int index = itens.indexOf(i);
         
-        if(!itens.contains(i)) {
+        if(index == -1) {
             throw new ProdutoInexistenteException();
         }
         else {
-            return itens.get(itens.indexOf(i)).getQtd();
+            return itens.get(index).getQtd();
         }
     }
     
